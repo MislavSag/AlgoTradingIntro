@@ -1,0 +1,4 @@
+- source: algotradingintro.qmd
+  quarto-pub:
+    - id: ab90f48b-af7f-4ba3-8167-06f1fff1c3c0
+      url: 'https://mislav.quarto.pub/introduction-to-quantitative-trading'

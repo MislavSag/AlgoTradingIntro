@@ -1,0 +1,210 @@
+---
+title: "Introduction to quantitative trading"
+author: "Mislav Šagovac"
+format: 
+  revealjs:
+    theme: league
+---
+
+## Terminology
+  - **Automated (algo) vs manual** - automating the process, no human in a loop.
+  - **Systematic vs discretionary** - using a system (rules) for high level decisions.
+  - **Quantitative va non-quantitative** - using data and statistical **models** to make trading decisions.
+
+::: {.notes}
+Mostly focus on equity stocks, but most of the concepts can be applied to other asset classes.
+Mostly applied for retail investors.
+There is of course semiautomated trading.
+A strategy which watches prices on two different exchanges and trades whenever there is a profitable arbitrage isn’t really quantitative, although it is systematic and automated. Similarly some approaches to rules-based trend following (eg buy if the 20 day MA is above the 200 day) are not really quantitative, even though they are systematic and automated.
+:::
+
+## Generate ideas {.smaller}
+  - [SSRN](https://papers.ssrn.com/sol3/displayjel.cfm){target="_blank"} - repository of academic         research papers in finance and economics. Look at G1, C58 JEL codes.
+  - [QuantConnect](https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library){target="_blank"} - QC has list of trading ideas
+  - Robot Wealth [blog](https://robotwealth.com/){target="_blank"} and                 [bootcamp](https://robotwealth.com/courses/trade-like-a-quant-bootcamp/){target="_blank"} - is a blog and online     course platform that provides resources on quantitative trading strategies.
+  - [Quant roadmap](https://snpmarketdata.blob.core.windows.net/trading-sources/RoadmapUltimateEdition.pdf){target="_blank"} from X user quant_arb. This roadmap provides detailed information on how to get started with      quantitative trading
+  - [Quantpedia](https://quantpedia.com/){target="_blank"}
+  - Social media - Twitter and reddit.
+
+## Tips for ideas
+![](quant_intro_figure.png){fig-align=center}
+
+List of [strategies](https://mislav.quarto.pub/quant_book/strategies.html){target="_blank"} you can start with.
+
+## Example of strategies
+  - Momentum
+  - Trend following
+  - Short VIX
+  - Statistical arbitrague (Pairs trading)
+  - Factor analysis
+  - Event-based - PEAD, PREAD, M&A, index rebalancing
+  - ML driven strategies
+
+# Data
+
+## Security Master
+  - corporate actions:
+    - stocks splits
+    - dividends
+  - symbol changes
+  - delistings
+  - mergers and acquisitions
+  - Vendors: Quantconnect, Databento, Bloomberg 
+
+## Market Data Types
+  - **MBO (Market by Order)**: Full order book, L3.
+  - **MBP-10 (Market by Price)**: Market depth, L2.
+  - **MBP-1 (Top of Book)**: Trades and quotes, L1.
+  - **TBBO (Top of Book, Sampled)**: Sampled in trade space.
+  - **Trades**: Tick-by-tick trades, last sale.
+  - **OHLCV-T**: Aggregates per second, minute, hour, or day.
+  - time bars, tick bars, volume bars, dollar volume bars.
+
+::: {.notes}
+First 3 are mostly used for HFT, but it can be used for higher frequency, for example for generating predictors.
+:::
+
+## Pricing data providers {.smaller}
+  - [Historical data vendor list](https://miltonfmr.com/historical-data-vendor-list/){target="_blank"}
+  - **Equities**
+    - If you have money: Bloomberg, Thomson Reuters, Morningstar
+    - If you have some money: Databento, QC bulk OHLCV, FMP cloud, Norgate Data, IB API, Algoseek
+    - If you have no money: Yahoo Finance, Ducascopy, investing.com (scraping).
+  - **Crypto**
+    - Exchanges: Binance, Coinbase
+    - Kaggle datasets.
+  - **Government US yields**:
+    - Liu and Wu (2020)
+  - **Options data**
+    - Databento, ORATS
+    
+## Fundamental data
+  - **Equities**
+    - Financial reports, SEC filings, 8-K, analyst estimates
+    - analyst ratings, insider trading, short interest
+    - If you have some money: FMP prep, SimFin+
+  - **Economic data**
+    - FRED, BIS, World Bank, OECD
+
+## Alternative data
+  - **News and social media**
+    - **News API** - Tingo
+    - **Twitter** - look at Rapid API.
+    - **Reddit** - look at Pushshift API.
+  - **Weather data** - for commodity trading
+  - **Other** - satellite images, shipping data, credit card transactions.
+
+## Data Quality
+  - **Survivorship bias** - only data from companies or ETF's that still exist.
+  - **Look-ahead bias** - using data that would not have been available at the time of the trade.
+  - **Restated data** - data that has been changed after the fact (earnings, GDP).
+  - **Data cleaning** 
+    - duplicates
+    - missing values - lcfo, 
+    - outliers - winsorization 
+    .
+
+## Data tips
+  - **Spend some money** - for high quality data.
+  - **Data storage** - flat files -> parquet database.
+  - **Visualize your data** - before you start modeling.
+
+# Predictors
+
+## Predictors
+  - **Technical indicators** - moving averages, RSI, MACD.
+  - **Statistical indicators** - volatility, skewness, kurtosis.
+  - **Sentiment indicators** - Twitter, Reddit, news.
+  - **Economic indicators** - GDP, unemployment, inflation.
+  - **Fundamental indicators** - P/E, P/B, EPS.
+  - **Alternative data** - satellite images, shipping data, credit card transactions.
+  
+## What is a good predictor?
+ - **Predictive power** - correlation with future returns.
+ - **Portfolio sorts** - sort stocks based on predictor and see if it (lineary) predicts future returns.
+ - **ML models** - use ML models to predict future returns and check performance out-of-sample.
+ - **Feature importance** - check which features are most important (some models hve this feture).
+ - **Brute force** - try all predictors and see which one works best on backtest (dangerous).
+
+## Predictors tips
+  - **Stationarity** - stationary predictors have some good properties.
+  - **Ensemble** - use ensamble of various predictors.
+  - **Feature engineering** - create new predictors from existing ones (various transforamtions).
+
+# Tools & Platforms
+
+## Programming languages
+  - **Python** - most popular. Packages: `Pandas`, `NumPy`, `SciPy`, `Scikit-learn`, `TensorFlow`.
+  - **R** - great for research and statistics, `quantmod`, `TTR`, `xts`, `data.table`, `tidyverse`.
+  - other: Julia, Matlab, Go.
+  - for speed: C++, Rust.
+
+## Research tips
+  - **visualize** - before you start modeling (scatter plots, bars...).
+  - **parameter sensitivity** - check how the model behaves with different parameters values.
+  - **sample splits** - walk forward, cross-validation, monte carlo simulations.
+  - **robustness** - robust to different market conditions, years, asset classes etc.
+  - **causal effects** - what explains the effect?
+  
+## Backtesting engines
+  - **[QuantConnect](https://www.quantconnect.com/){target="_blank"}** (py, C#) - my recommndation; free data in web development! All assets classes.
+  - **Backtrader** (py) - open-source, no heavy dependencies, good docs.
+  - **Zorro** (c, c++) - vary fast, py and R integration.
+  - **Nutilius Trader** (py, rust) - relativly new, but promising, fast, crypto.
+  - **ctxx** (py) - for crypto, haven't tried, but heard good things.
+  - **VectorBT** - for vectorized backtesting.
+  - **Build yours** - not in the beggining.
+  
+## Backtesting pitfalls
+  - **Overfitting** - tuning the strategy to the data, p-hacking.
+  - **Look ahead bias** - we mention here again.
+  - **Only insample** - training data, out of sample - testing data.
+    - Walk forward optimization
+    - Cross-validation
+    - Montecarlo simulation
+
+## Backtesting tips
+- **Backtesting is not a research tool**; it should be used at the end of the process:
+  1. **Final Verification** - don't optimize parameters.
+  2. **Sensitivity** - to transaction costs and fill ratios.
+  3. **Code bugs**
+  4. **Non-Performance Stats**: turnover, max net/gross exposure, and other stats.
+- **Avoid Full Backtests for Signal Evaluation**: Use alternative methods like event studies or regression for signal/alpha evaluation without running full backtests.
+
+## Costs - Reality modeling
+ - **Brokerage costs** - easily estimated, commissions and fees.
+ - **Trading costs** - slippage (delay), bid-ask spread and market impact.
+ - **Opportunity costs** - order fillings.
+ - **Short sale constraints** - cost of borrowing.
+ - **CFD costs** - if you trade cfd's
+
+# Example
+
+## Example: Momentum strategy for stocks equity
+  - Difference between momentum (relative or cross sectional momentum) and trend following (absolute ot time        series momentum).
+  - Trend - moving in the same direction. If it has gone up rcently it will continue to go up.
+  - Momentum - if it has gone up relative to other assets, it will continue to go up.
+  - we will follow [this](https://www.algos.org/p/breaking-down-momentum-strategies){target="_blank"} analysis.
+  
+## Causes of momementum / trend
+  - **Behavioral** - Overreact/underreact to new information, anchor to old prices, herding.
+  - **Structural** - Investors are slow - need to call investment committee etc.
+  - **Information-based**: Information diffusion, information asymmetry.
+  - Trend effects are are stronger in small caps, in countries with less developed financial    markets, after important information is released or fair value is less clear in general.
+  - Crypto - fragmented, hard to value, strong retail engagement.
+
+## Some code
+  - Research
+  - Backtesting
+  
+## Momentum tips
+ - long term momentum behaves more like factors (above week).
+ - there are explosive momentum after shocks, but they are hard to trade due to low capacity.
+ - use as many markets as possible.
+ - ensemble
+ - lower the frequency, longer the backtest.
+ 
+# Thank you!
+
+ 
+
