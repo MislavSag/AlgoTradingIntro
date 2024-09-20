@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="AlgoTradingIntro_files/libs/clipboard/clipboard.min.js"></script>
-<script src="AlgoTradingIntro_files/libs/quarto-html/tabby.min.js"></script>
-<script src="AlgoTradingIntro_files/libs/quarto-html/popper.min.js"></script>
-<script src="AlgoTradingIntro_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="AlgoTradingIntro_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="AlgoTradingIntro_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="AlgoTradingIntro_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="AlgoTradingIntro_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.47">
+<script src="algotradingintro_files/libs/clipboard/clipboard.min.js"></script>
+<script src="algotradingintro_files/libs/quarto-html/tabby.min.js"></script>
+<script src="algotradingintro_files/libs/quarto-html/popper.min.js"></script>
+<script src="algotradingintro_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="algotradingintro_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="algotradingintro_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="algotradingintro_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="algotradingintro_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Mislav Šagovac">
   <title>Introduction to quantitative trading</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="AlgoTradingIntro_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="AlgoTradingIntro_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="algotradingintro_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="algotradingintro_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -30,11 +30,11 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="AlgoTradingIntro_files/libs/revealjs/dist/theme/quarto.css">
-  <link href="AlgoTradingIntro_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="AlgoTradingIntro_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="AlgoTradingIntro_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="AlgoTradingIntro_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="algotradingintro_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="algotradingintro_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="algotradingintro_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="algotradingintro_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="algotradingintro_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -342,7 +342,7 @@ Mislav Šagovac
 <ul>
 <li><strong>Automated (algo) vs manual</strong> - automating the process, no human in a loop.</li>
 <li><strong>Systematic vs discretionary</strong> - using a system (rules) for high level decisions.</li>
-<li><strong>Quantitative va non-quantitative</strong> - using data and statistical <strong>models</strong> to make trading decisions.</li>
+<li><strong>Quantitative vs non-quantitative</strong> - using data and statistical <strong>models</strong> to make trading decisions.</li>
 </ul>
 <aside class="notes">
 <p>Mostly focus on equity stocks, but most of the concepts can be applied to other asset classes. Mostly applied for retail investors. There is of course semiautomated trading. A strategy which watches prices on two different exchanges and trades whenever there is a profitable arbitrage isn’t really quantitative, although it is systematic and automated. Similarly some approaches to rules-based trend following (eg buy if the 20 day MA is above the 200 day) are not really quantitative, even though they are systematic and automated.</p>
@@ -379,8 +379,8 @@ Mislav Šagovac
 <ul>
 <li>Momentum</li>
 <li>Trend following</li>
-<li>Short VIX</li>
-<li>Statistical arbitrague (Pairs trading)</li>
+<li>Short Volatility</li>
+<li>Statistical arbitrage (Pairs trading)</li>
 <li>Factor analysis</li>
 <li>Event-based - PEAD, PREAD, M&amp;A, index rebalancing</li>
 <li>ML driven strategies</li>
@@ -566,7 +566,7 @@ Mislav Šagovac
 <section id="backtesting-engines" class="slide level2">
 <h2>Backtesting engines</h2>
 <ul>
-<li><strong><a href="https://www.quantconnect.com/" target="_blank">QuantConnect</a></strong> (py, C#) - my recommndation; free data in web development! All assets classes.</li>
+<li><a href="https://www.quantconnect.com/" target="_blank"><strong>QuantConnect</strong></a> (py, C#) - my recommndation; free data in web development! All assets classes.</li>
 <li><strong>Backtrader</strong> (py) - open-source, no heavy dependencies, good docs.</li>
 <li><strong>Zorro</strong> (c, c++) - vary fast, py and R integration.</li>
 <li><strong>Nutilius Trader</strong> (py, rust) - relativly new, but promising, fast, crypto.</li>
@@ -664,19 +664,19 @@ Mislav Šagovac
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="AlgoTradingIntro_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="algotradingintro_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="AlgoTradingIntro_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="AlgoTradingIntro_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="AlgoTradingIntro_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="AlgoTradingIntro_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="AlgoTradingIntro_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="algotradingintro_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="algotradingintro_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="algotradingintro_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="algotradingintro_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="algotradingintro_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="AlgoTradingIntro_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="AlgoTradingIntro_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="AlgoTradingIntro_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="AlgoTradingIntro_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="algotradingintro_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="algotradingintro_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="algotradingintro_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="algotradingintro_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -902,7 +902,18 @@ Mislav Šagovac
         }
         return false;
       }
-      const onCopySuccess = function(e) {
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -934,29 +945,7 @@ Mislav Šagovac
         }, 1000);
         // clear code selection
         e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
       });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        // For code content inside modals, clipBoardJS needs to be initialized with a container option
-        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
           var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -964,7 +953,7 @@ Mislav Šagovac
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
         // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
         for (var i=0; i<links.length; i++) {
           const link = links[i];
           if (!isInternal(link.href)) {
